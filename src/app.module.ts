@@ -3,6 +3,7 @@ import { CompanyModule } from './company/company.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { ResponsibleModule } from './responsible/responsible.module';
+import { SocialNetworksModule } from './social-networks/social-networks.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ResponsibleModule } from './responsible/responsible.module';
     ),
     CompanyModule,
     ResponsibleModule,
+    SocialNetworksModule,
   ],
 })
 export class AppModule {}

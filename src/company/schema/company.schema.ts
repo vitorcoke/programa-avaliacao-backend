@@ -14,13 +14,20 @@ export class Company {
   @Prop({ required: true })
   cnpj: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
+  @Prop({ default: [] })
   meetings: string[];
 
-  @ApiPropertyOptional()
+  @ApiProperty()
+  @Prop({ default: [] })
+  social_networks: string[];
+
+  @ApiProperty()
+  @Prop({ default: [] })
   certificates: string[];
 
-  @ApiPropertyOptional()
+  @ApiProperty()
+  @Prop()
   score: number;
 
   @ApiPropertyOptional()

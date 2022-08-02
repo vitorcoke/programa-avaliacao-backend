@@ -9,4 +9,7 @@ export class CreateCompanyDTO {
   @ApiProperty({ description: 'CNPJ da empresa' })
   @IsNotEmpty()
   cnpj: number;
+
+  @ApiProperty()
+  score: number;
 }
