@@ -1,8 +1,12 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CompanyService } from './company.service';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { CreateCompanyDTO } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
+import { CreateCompanySwagger } from './swagger/create-company-swagger';
+import { BadRequestSwagger } from 'src/helpers/swagger/bad-request.swagger';
+import { GenericExeceptionSwagger } from 'src/helpers/swagger/generic-exeception.swagger';
+import { UpdateCompanySwagger } from './swagger/update-company-swagger';
 
 @ApiTags('Empresas')
 @Controller('company')
@@ -13,14 +17,17 @@ export class CompanyController {
   @ApiResponse({
     status: 201,
     description: 'Empresas encontradas com sucesso',
+    type: CreateCompanySwagger,
   })
   @ApiResponse({
     status: 400,
     description: 'Erro ao buscas empresas',
+    type: BadRequestSwagger,
   })
   @ApiResponse({
     status: 500,
     description: 'Erro interno',
+    type: GenericExeceptionSwagger,
   })
   @Get()
   async findAll() {
@@ -31,14 +38,17 @@ export class CompanyController {
   @ApiResponse({
     status: 201,
     description: 'Empresa criada com sucesso',
+    type: UpdateCompanySwagger,
   })
   @ApiResponse({
     status: 400,
     description: 'Erro ao criar empresa',
+    type: BadRequestSwagger,
   })
   @ApiResponse({
     status: 500,
     description: 'Erro interno',
+    type: GenericExeceptionSwagger,
   })
   @Post()
   async create(@Body() createCompanyDto: CreateCompanyDTO) {
@@ -49,15 +59,19 @@ export class CompanyController {
   @ApiResponse({
     status: 201,
     description: 'Empresa atualizada com sucesso',
+    type: UpdateCompanySwagger,
   })
   @ApiResponse({
     status: 400,
     description: 'Erro ao atualizar empresa',
+    type: BadRequestSwagger,
   })
   @ApiResponse({
     status: 500,
     description: 'Erro interno',
+    type: GenericExeceptionSwagger,
   })
+  @ApiParam({ name: 'id', description: 'ID da empresa que será atualizada' })
   @Patch(':id')
   async update(
     @Param('id') id: string,

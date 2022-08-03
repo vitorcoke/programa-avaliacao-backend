@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CompanyModule } from './company/company.module';
+import { CompanyModule } from './app/company/company.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
-import { ResponsibleModule } from './responsible/responsible.module';
-import { SocialNetworksModule } from './social-networks/social-networks.module';
+import { ResponsibleModule } from './app/responsible/responsible.module';
+import { SocialNetworksModule } from './app/social-networks/social-networks.module';
+import { MeetingsModule } from './app/meetings/meetings.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SocialNetworksModule } from './social-networks/social-networks.module';
     CompanyModule,
     ResponsibleModule,
     SocialNetworksModule,
+    MeetingsModule,
   ],
 })
 export class AppModule {}
