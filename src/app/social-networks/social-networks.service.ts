@@ -39,4 +39,12 @@ export class SocialNetworksService {
       throw new InternalServerErrorException(err.message);
     }
   }
+
+  async delete(id: string) {
+    try {
+      return await this.socialNetworksmodel.deleteOne({ _id: id });
+    } catch (err) {
+      throw new InternalServerErrorException(err.messege);
+    }
+  }
 }

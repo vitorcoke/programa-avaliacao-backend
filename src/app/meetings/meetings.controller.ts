@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/helpers/swagger/bad-request.swagger';
 import { GenericExeceptionSwagger } from 'src/helpers/swagger/generic-exeception.swagger';
@@ -72,5 +72,26 @@ export class MeetingsController {
   @Post()
   async create(@Body() createMeetingsDto: CreateMeetingsDto) {
     return this.meetingsService.create(createMeetingsDto);
+  }
+
+  @ApiOperation({ summary: 'Deletar reunião' })
+  @ApiResponse({
+    status: 201,
+    description: 'Reunião deletada com sucesso',
+    type: CreateMeetingsSwagger,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Erro ao deletar reunião',
+    type: BadRequestSwagger,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Erro interno',
+    type: GenericExeceptionSwagger,
+  })
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return this.meetingsService.delete(id);
   }
 }

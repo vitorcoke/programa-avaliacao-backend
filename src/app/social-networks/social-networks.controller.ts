@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { BadRequestSwagger } from 'src/helpers/swagger/bad-request.swagger';
 import { GenericExeceptionSwagger } from 'src/helpers/swagger/generic-exeception.swagger';
@@ -82,5 +82,27 @@ export class SocialNetworksController {
   @Post()
   async create(@Body() createSocialNetworkDto: CreateSocialNetworksDto) {
     return this.socialNetworksService.create(createSocialNetworkDto);
+  }
+
+  @ApiOperation({
+    summary: 'Deleta uma Rede Social',
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Rede Social deletada com sucesso',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Rede Social não encontrada',
+    type: BadRequestSwagger,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Erro interno',
+    type: GenericExeceptionSwagger,
+  })
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return this.socialNetworksService.delete(id);
   }
 }

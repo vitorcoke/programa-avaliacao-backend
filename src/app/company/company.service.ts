@@ -44,4 +44,12 @@ export class CompanyService {
     if (!updateCompany) throw new NotFoundException();
     return updateCompany;
   }
+
+  async delete(id: string) {
+    try {
+      return await this.companyModel.deleteOne({ _id: id });
+    } catch (err) {
+      throw new InternalServerErrorException(err.messege);
+    }
+  }
 }

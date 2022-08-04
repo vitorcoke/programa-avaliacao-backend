@@ -36,4 +36,12 @@ export class MeetingsService {
       throw new InternalServerErrorException(err.messege);
     }
   }
+
+  async delete(id: string) {
+    try {
+      return await this.meetingsModel.deleteOne({ _id: id });
+    } catch (err) {
+      throw new InternalServerErrorException(err.messege);
+    }
+  }
 }

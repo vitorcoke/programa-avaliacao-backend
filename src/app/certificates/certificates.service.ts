@@ -39,4 +39,12 @@ export class CertificatesService {
       throw new InternalServerErrorException(err.messege);
     }
   }
+
+  async delete(id: string) {
+    try {
+      return await this.certificatesModel.deleteOne({ _id: id });
+    } catch (err) {
+      throw new InternalServerErrorException(err.messege);
+    }
+  }
 }

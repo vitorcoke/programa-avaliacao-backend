@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { CreateCompanyDTO } from './dto/create-company.dto';
@@ -78,5 +86,26 @@ export class CompanyController {
     @Body() UpdatecompanyDto: UpdateCompanyDto,
   ) {
     return await this.companiesService.update(id, UpdatecompanyDto);
+  }
+
+  @ApiOperation({ summary: 'Deleter empresa' })
+  @ApiResponse({
+    status: 204,
+    description: 'Empresa atualizada com sucesso',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Erro ao atualizar empresa',
+    type: BadRequestSwagger,
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Erro interno',
+    type: GenericExeceptionSwagger,
+  })
+  @ApiParam({ name: 'id', description: 'ID da empresa que será atualizada' })
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return await this.companiesService.delete(id);
   }
 }
