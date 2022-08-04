@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateMeetingsDto {
-  @ApiProperty({ description: 'Nome da Reunião' })
+export class CreateCertificatesDto {
+  @ApiProperty()
   @IsNotEmpty()
   name: string;
 }

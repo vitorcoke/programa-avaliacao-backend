@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ResponsibleModule } from './app/responsible/responsible.module';
 import { SocialNetworksModule } from './app/social-networks/social-networks.module';
 import { MeetingsModule } from './app/meetings/meetings.module';
+import { CertificatesModule } from './app/certificates/certificates.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MeetingsModule } from './app/meetings/meetings.module';
     ResponsibleModule,
     SocialNetworksModule,
     MeetingsModule,
+    CertificatesModule,
   ],
 })
 export class AppModule {}
